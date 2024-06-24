@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rj#-z^kx3j+1ay397otg6j8m_8#v^$^$jys6&41vy^&6le)ezc'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,9 +37,11 @@ DEBUG = True
 # else:
 #     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'celery-tutorial-repo-production.up.railway.app']
+railway_public_domain = env('RAILWAY_PUBLIC_DOMAIN', default='')
+railway_public_url = f'https://{railway_public_domain}' if railway_public_domain else ''
 
-CSRF_TRUSTED_ORIGINS = [ 'https://celery-tutorial-repo-production.up.railway.app' ]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', railway_public_domain ]
+CSRF_TRUSTED_ORIGINS = [ railway_public_url ]
 
 
 # Application definition
