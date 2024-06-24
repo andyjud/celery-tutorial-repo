@@ -1,5 +1,5 @@
-#### Video Tutorial of this project
-https://youtu.be/SQ4A7Q6_md8
+#### Video Tutorial Series of this project
+https://www.youtube.com/watch?v=yE0eg0frVoU
 <br><br>
 
 #### Getting the files
