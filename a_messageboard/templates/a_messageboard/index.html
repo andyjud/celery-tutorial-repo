@@ -59,7 +59,16 @@
                 {% if user in messageboard.subscribers.all %}
                 <a href="{% url 'subscribe' %}" class="inline-block bg-gray-300 hover:bg-red-500 text-white font-bold rounded-full py-3 px-4">Unsubscribe</a>
                 {% else %}
-                <a href="{% url 'subscribe' %}" class="inline-block bg-black hover:bg-emerald-500 text-white font-bold rounded-full py-3 px-4">Subscribe</a>
+                    {% for email in user.emailaddress_set.all %}
+                        {% if email.primary and email.verified %}
+                        <a href="{% url 'subscribe' %}" class="inline-block bg-black hover:bg-emerald-500 text-white font-bold rounded-full py-3 px-4">Subscribe</a>
+                        {% else %}
+                        <div x-data="{ modal_open: false }" >
+                            <a @click="modal_open = true" class="inline-block bg-black hover:bg-emerald-500 text-white font-bold rounded-full py-3 px-4 cursor-pointer">Subscribe</a>
+                            {% include 'a_messageboard/subscribe_modal.html' %}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
             </div>
 

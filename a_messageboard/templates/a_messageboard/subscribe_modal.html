@@ -1,0 +1,9 @@
+{% extends 'a_messageboard/modal.html' %}
+
+{% block modal_content %}
+
+<p>You need to verify your email address to Subscribe</p>
+
+<a class="button" href="{% url 'profile-settings' %}">Verify Email</a>
+
+{% endblock %}

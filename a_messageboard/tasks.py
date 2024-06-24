@@ -20,10 +20,11 @@ def send_newsletter():
     )
     
     for subscriber in subscribers:
-        body = render_to_string('a_messageboard/newsletter.html', {'name': subscriber.profile.name})
-        email = EmailMessage( subject, body, to=[subscriber.email] )
-        email.content_subtype = "html"
-        email.send()
+        if subscriber.emailaddress_set.get(primary=True).verified:
+            body = render_to_string('a_messageboard/newsletter.html', {'name': subscriber.profile.name})
+            email = EmailMessage( subject, body, to=[subscriber.email] )
+            email.content_subtype = "html"
+            email.send()
     
     current_month = datetime.now().strftime('%B') 
     subscriber_count = subscribers.count()   

@@ -50,10 +50,11 @@ def send_email(message):
     subscribers = messageboard.subscribers.all()
     
     for subscriber in subscribers: 
-        subject = f'New Message from {message.author.profile.name}'
-        body = f'{message.author.profile.name}: {message.body}\n\nRegards from\nMy Message Board'
-        
-        send_email_task.delay(subject, body, subscriber.email)
+        if subscriber.emailaddress_set.get(primary=True).verified:
+            subject = f'New Message from {message.author.profile.name}'
+            body = f'{message.author.profile.name}: {message.body}\n\nRegards from\nMy Message Board'
+            
+            send_email_task.delay(subject, body, subscriber.email)
         
 #       email_thread = threading.Thread(target=send_email_thread, args=(subject, body, subscriber))
 #       email_thread.start()

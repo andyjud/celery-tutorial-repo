@@ -1,0 +1,14 @@
+<div x-show="modal_open" x-cloak
+    x-transition:enter="duration-300 ease-out relative z-50"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100">
+    <div class="fixed inset-0 bg-gray-800 bg-opacity-80 z-50"></div>
+    <div class="fixed inset-0 z-50">
+        <div class="flex min-h-full justify-center items-center p-6">
+        <div @click.away="modal_open = false" class="rounded-xl bg-white text-left shadow-xl p-10 w-full max-w-lg">
+            {% block modal_content %}
+            {% endblock %}
+        </div>
+        </div>
+    </div>
+</div>

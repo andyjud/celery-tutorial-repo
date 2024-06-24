@@ -17,7 +17,6 @@ env = Env()
 Env.read_env()
 
 ENVIRONMENT = env('ENVIRONMENT', default="production")
-ENVIRONMENT = "production"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,18 +29,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-# if ENVIRONMENT == 'development':
-#     DEBUG = True
-# else:
-#     DEBUG = False
+if ENVIRONMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
 site_domain = env('RAILWAY_PUBLIC_DOMAIN', default='')
-site_url = f'https://{site_domain}' if site_domain else ''
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', site_domain ]
-CSRF_TRUSTED_ORIGINS = [ site_url ]
+CSRF_TRUSTED_ORIGINS = [ f'https://{site_domain}' ]
 
 
 # Application definition
