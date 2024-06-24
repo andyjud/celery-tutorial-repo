@@ -37,11 +37,11 @@ DEBUG = True
 # else:
 #     DEBUG = False
 
-railway_public_domain = env('RAILWAY_PUBLIC_DOMAIN', default='')
-railway_public_url = f'https://{railway_public_domain}' if railway_public_domain else ''
+site_domain = env('RAILWAY_PUBLIC_DOMAIN', default='')
+site_url = f'https://{site_domain}' if site_domain else ''
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', railway_public_domain ]
-CSRF_TRUSTED_ORIGINS = [ railway_public_url ]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', site_domain ]
+CSRF_TRUSTED_ORIGINS = [ site_url ]
 
 
 # Application definition
