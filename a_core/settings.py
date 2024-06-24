@@ -36,9 +36,11 @@ else:
     DEBUG = False
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'celery-messageboard.up.railway.app' ]
+site_domain = env('RAILWAY_PUBLIC_DOMAIN', default='')
 
-CSRF_TRUSTED_ORIGINS = [ 'https://celery-messageboard.up.railway.app' ]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', site_domain ]
+
+CSRF_TRUSTED_ORIGINS = [ f'https://{site_domain}' ]
 
 
 # Application definition
