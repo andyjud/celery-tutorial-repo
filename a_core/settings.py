@@ -36,9 +36,9 @@ else:
     DEBUG = False
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'messageboard-celery.up.railway.app' ]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'celery-messageboard.up.railway.app' ]
 
-CSRF_TRUSTED_ORIGINS = [ 'https://messageboard-celery.up.railway.app' ]
+CSRF_TRUSTED_ORIGINS = [ 'https://celery-messageboard.up.railway.app' ]
 
 
 # Application definition
