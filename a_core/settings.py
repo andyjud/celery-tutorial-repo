@@ -17,7 +17,7 @@ env = Env()
 Env.read_env()
 
 ENVIRONMENT = env('ENVIRONMENT', default="production")
-# ENVIRONMENT = 'production'
+ENVIRONMENT = 'production'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -190,7 +190,11 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+if ENVIRONMENT == 'development':
+    CELERY_BROKER_URL = 'redis://localhost:6379/0'
+else:
+    CELERY_BROKER_URL = env('REDIS_URL') 
+    
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_RESULT_EXTENDED = True
